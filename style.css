@@ -1,104 +1,150 @@
-    body {
-        margin: 0;
-        font-family: 'Poppins', sans-serif;
-        background: linear-gradient(135deg, #fce4ec, #f3e5f5);
-        color: #333;
-    }
+/* =========================
+   Base & Background Theme
+   ========================= */
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    color: #e0e0ff;
+    background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+}
 
-    header {
-        text-align: center;
-        padding: 1.5rem;
-        color: #880e4f;
-        font-size: 2rem;
-        font-weight: 600;
-    }
+/* Animated glowing orbs overlay */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: 
+      radial-gradient(circle at 20% 80%, rgba(139, 92, 246, 0.15) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba(236, 72, 153, 0.15) 0%, transparent 50%),
+      radial-gradient(circle at 40% 40%, rgba(245, 158, 11, 0.08) 0%, transparent 50%);
+    animation: orbs 20s ease-in-out infinite alternate;
+    z-index: 0;
+}
+@keyframes orbs {
+    0% { transform: scale(1) rotate(0deg); }
+    50% { transform: scale(1.2) rotate(15deg); }
+    100% { transform: scale(1) rotate(-15deg); }
+}
 
-    .music-container {
-        display: grid;
-        grid-template-columns: repeat(auto-fit,minmax(350px,1fr));
-        gap: 1.5rem;
-        padding: 2rem;
-        
-    }
+/* =========================
+   Header
+   ========================= */
+header {
+    position: relative;
+    text-align: center;
+    padding: 1.5rem;
+    font-size: 2rem;
+    font-weight: 600;
+    color: #bb86fc;
+    text-shadow: 0 0 10px rgba(187, 134, 252, 0.6), 0 0 20px rgba(187, 134, 252, 0.3);
+    z-index: 2;
+}
 
-    .music-card {
-        background: rgba(255, 255, 255, 0.25);
-        backdrop-filter: blur(12px);
-        border-radius: 20px;
-        padding: 1rem;
-        text-align: center;
-        box-shadow: 0 8px 24px rgba(0,0,0,0.1);
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
+/* =========================
+   Music Container & Cards
+   ========================= */
+.music-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(320px,1fr));
+    gap: 1.5rem;
+    padding: 2rem;
+    position: relative;
+    z-index: 2;
+}
 
-    .music-card:hover {
-        transform: translateY(-5px) scale(1.02);
-        box-shadow: 0 12px 32px rgba(0,0,0,0.15);
-    }
+.music-card {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 20px;
+    padding: 1rem;
+    text-align: center;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+    transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s;
+    position: relative;
+}
+.music-card:hover {
+    transform: translateY(-6px) scale(1.03);
+    border-color: rgba(139, 92, 246, 0.5);
+    box-shadow: 0 12px 40px rgba(139, 92, 246, 0.3);
+}
 
-    .music-image {
-        width: 100%;
-        height: 180px;
-        object-fit: cover;
-        border-radius: 15px;
-    }
+.music-image {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+}
 
-    .title {
-        font-size: 1.2rem;
-        margin: 0.8rem 0 0.3rem;
-        font-weight: 600;
-        color: #6a1b9a;
-    }
+.title {
+    font-size: 1.2rem;
+    margin: 0.8rem 0 0.3rem;
+    font-weight: 600;
+    color: #eabfff;
+    text-shadow: 0 0 6px rgba(234, 191, 255, 0.6);
+}
 
-    .artist {
-        font-size: 0.9rem;
-        color: #555;
-        margin-bottom: 0.8rem;
-    }
+.artist {
+    font-size: 0.9rem;
+    color: #aaa;
+    margin-bottom: 0.8rem;
+}
 
-    .play-btn {
-        background: #ec407a;
-        border: none;
-        padding: 0.8rem 1.2rem;
-        border-radius: 50%;
-        color: white;
-        font-size: 1.2rem;
-        cursor: pointer;
-        transition: background 0.3s ease;
-    }
+/* =========================
+   Buttons
+   ========================= */
+.play-btn {
+    background: linear-gradient(135deg, #8b5cf6, #ec4899);
+    border: none;
+    padding: 0.8rem 1.2rem;
+    border-radius: 50%;
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 0 12px rgba(236, 72, 153, 0.5);
+}
+.play-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 18px rgba(236, 72, 153, 0.8);
+}
 
-    .play-btn:hover {
-        background: #d81b60;
-    }
+/* =========================
+   Bottom Player
+   ========================= */
+.bottom-player {
+    position: fixed;
+    bottom: 0; left: 0;
+    width: 100%;
+    background: rgba(25, 25, 50, 0.8);
+    backdrop-filter: blur(12px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.8rem;
+    box-shadow: 0 -4px 20px rgba(0,0,0,0.5);
+    border-top: 1px solid rgba(255,255,255,0.1);
+    display: none; /* hidden until song plays */
+    z-index: 3;
+}
 
-    /* Bottom player */
-    .bottom-player {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        background: rgba(255, 255, 255, 0.8);
-        backdrop-filter: blur(8px);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding:0.5rem;
-        box-shadow: 0 -4px 12px rgba(0,0,0,0.1);
-        display: none; /* hidden until a song plays */
-    }
-
-    .control-btn {
-        background: #ec407a;
-        border: none;
-        margin: 0 0.5rem;
-        padding: 0.8rem;
-        border-radius: 50%;
-        color: white;
-        font-size: 1.2rem;
-        cursor: pointer;
-        transition: background 0.3s ease;
-    }
-
-    .control-btn:hover {
-        background: #d81b60;
-    }
+.control-btn {
+    background: linear-gradient(135deg, #8b5cf6, #ec4899);
+    border: none;
+    margin: 0 0.5rem;
+    padding: 0.8rem;
+    border-radius: 50%;
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 0 10px rgba(139, 92, 246, 0.5);
+}
+.control-btn:hover {
+    transform: scale(1.15);
+    box-shadow: 0 0 18px rgba(139, 92, 246, 0.9);
+}
